@@ -5,21 +5,21 @@ Create a function to check if the answer is correct when an option is clicked
 Create a function to get the user to the next question or if there are no questions left, 
 end the game and display the highscore  */
 
-var myTimer;
+var startButton = document.querySelector("#start");
+var startPage = document.querySelector("#start-page");
+var ScorePage = document.querySelector("#end-page");
+var container = document.getElementById("question-window");
+var answer1 = document.querySelector("#ans1");
+var answer2 = document.querySelector("#ans2");
+var answer3 = document.querySelector("#ans3");
+var answer4 = document.querySelector("#ans4");
+
+var time;
 var qCount = 0;
 var score = 0;
-var wrongAnswer = 0;
+var incorrect = 0;
 
-var startBtn = document.querySelector("#start");
-var startPage = document.querySelector("#start-page");
-var endPage = document.querySelector("#end-page");
-var questionWindow = document.getElementById("question-window");
-var button1 = document.querySelector("#ans1");
-var button2 = document.querySelector("#ans2");
-var button3 = document.querySelector("#ans3");
-var button4 = document.querySelector("#ans4");
-
-startBtn.addEventListener("click", startQuiz);
+startButton.addEventListener("click", startQuiz);
 // Putting the questions into an array
 var questions = [
   {
@@ -59,24 +59,24 @@ function startQuiz() {
   //stop displaying the welcome screen
   startPage.style.display = "none";
   // display the questions
-  questionWindow.style.display = "block";
+  container.style.display = "block";
   //Set the time and condition if its correct or not
   timeInterval();
   //populate questions
-  displayQuestion();
+  displayPrompts();
   //Get the usersInput, do work depending on the input
   getUserInput();
 }
 
 function timeInterval() {
-  myTimer = setInterval(timer, 1000);
+  time = setInterval(timer, 1000);
   var timeLeft = 15; // Set the originial clock to 15 seconds
 
   function timer() {
     // if the wrong answer is clicked, take 2 seconds away from the count
-    if (wrongAnswer === 1) {
+    if (incorrect === 1) {
       timeLeft -= 2;
-      wrongAnswer--;
+      incorrect--;
     }
 
     if (timeLeft < 0) {
@@ -86,36 +86,89 @@ function timeInterval() {
       document.getElementById("score").innerHTML = "Score: " + score;
       timeLeft--;
     } else {
-      clearInterval(myTimer);
+      clearInterval(time);
 
       //time is 0, display the score
       document.getElementById("timer-text").innerHTML = "Time Remaining: 0 sec";
       document.getElementById("final-score").innerHTML = "Score: " + score;
       // set display to none so the questions page is now gone
-      questionWindow.style.display = "none";
-      // display the endpage now that questions are over
-      endPage.style.display = "block";
+      container.style.display = "none";
+      // display the ScorePage now that questions are over
+      ScorePage.style.display = "block";
     }
   }
 }
 //Get the question to display properly as well as the options on the buttons
-function displayQuestion() {
-  //target elements to update
+function displayPrompts() {
+  //update hese elements on the user Interface
   var title = document.querySelector("#question-title");
   var text = document.querySelector("#question-text");
 
-  //update targets
-  title.textContent = "question number " + (qCount + 1);
+  //update questions and text
+  title.textContent = "question: " + (qCount + 1);
   text.textContent = questions[qCount].questionText;
 
   //loop to update answer buttons
-  for (i = 0; i < 5; i++) {
-    //5 here because it was my first try and it worked
+  for (i = 0; i < 4; i++) {
     //target the button
     var button = document.querySelector("#ans" + (i + 1));
-    //update the text
+    //update the text on the button
     button.textContent = questions[qCount].options[i];
   }
 
   qCount++;
+}
+
+function getUserInput() {
+  // event listener for answer-btn
+  answer1.addEventListener("click", function () {
+    var userInput = this.innerHTML;
+    var actualAnswer = questions[qCount - 1].answer;
+    console.log(actualAnswer);
+    //check if answer value matches correct value
+    if (userInput === actualAnswer) {
+      score++;
+      displayPrompts();
+    } else {
+      incorrect++;
+      displayPrompts();
+    }
+  });
+
+  answer2.addEventListener("click", function () {
+    var userInput = this.innerHTML;
+    var actualAnswer = questions[qCount - 1].answer;
+    //check if answer value matches correct value
+    if (userInput === actualAnswer) {
+      score++;
+      displayPrompts();
+    } else {
+      incorrect++;
+      displayPrompts();
+    }
+  });
+  answer3.addEventListener("click", function () {
+    var userInput = this.innerHTML;
+    var actualAnswer = questions[qCount - 1].answer;
+    //check if answer value matches correct value
+    if (userInput === actualAnswer) {
+      score++;
+      displayPrompts();
+    } else {
+      incorrect++;
+      displayPrompts();
+    }
+  });
+  answer4.addEventListener("click", function () {
+    var userInput = this.innerHTML;
+    var actualAnswer = questions[qCount - 1].answer;
+    //check if answer value matches correct value
+    if (userInput === actualAnswer) {
+      score++;
+      displayPrompts();
+    } else {
+      incorrect++;
+      displayPrompts();
+    }
+  });
 }

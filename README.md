@@ -39,3 +39,5 @@ as you go along. Anytime you get a question correct, the score increases, anytim
 This project is not complete:
 
 To Do: Add a high scores list to the end page to see users high scores.
+The scores are not working properly
+User Interface is bad
