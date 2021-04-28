@@ -6,7 +6,7 @@ Create a function to get the user to the next question or if there are no questi
 end the game and display the highscore  */
 
 var myTimer;
-var questiontimeLeft = 0;
+var qCount = 0;
 var score = 0;
 var wrongAnswer = 0;
 
@@ -23,34 +23,34 @@ startBtn.addEventListener("click", startQuiz);
 // Putting the questions into an array
 var questions = [
   {
-    questionText: "WHat does HTML stand for?",
-    answerOptions: [
+    questionText: "What does HTML stand for?",
+    options: [
       "Home Tool Markup Language",
       "Hyper Text Markup Language",
       "Hyperlinks and Text Markup Language",
-      "Seomthing else",
+      "Something else",
     ],
     answer: "Hyper Text Markup Language",
   },
   {
     questionText: "What element creates the largest heading?",
-    answerOptions: ["<heading>", "<head>", "<h1>", "<h2>"],
+    options: ["<heading>", "<head>", "<h1>", "<h2>"],
     answer: "<h1>",
   },
   {
     questionText: "Which character respresents an end tag?",
-    answerOptions: ["<", "/", "^", "*"],
+    options: ["<", "/", "^", "*"],
     answer: "/",
   },
   {
     questionText: "Which element represents an ordered list?",
-    answerOptions: ["<ol>", "<ul>", "<li>", "<list>"],
+    options: ["<ol>", "<ul>", "<li>", "<list>"],
     answer: "<ol>",
   },
   {
     questionText:
       "What attribute shows text for an image if it cant be displayed?",
-    answerOptions: ["Title", "longdesc", "src", "alt"],
+    options: ["Title", "longdesc", "src", "alt"],
     answer: "alt",
   },
 ];
@@ -97,4 +97,25 @@ function timeInterval() {
       endPage.style.display = "block";
     }
   }
+}
+//Get the question to display properly as well as the options on the buttons
+function displayQuestion() {
+  //target elements to update
+  var title = document.querySelector("#question-title");
+  var text = document.querySelector("#question-text");
+
+  //update targets
+  title.textContent = "question number " + (qCount + 1);
+  text.textContent = questions[qCount].questionText;
+
+  //loop to update answer buttons
+  for (i = 0; i < 5; i++) {
+    //5 here because it was my first try and it worked
+    //target the button
+    var button = document.querySelector("#ans" + (i + 1));
+    //update the text
+    button.textContent = questions[qCount].options[i];
+  }
+
+  qCount++;
 }
