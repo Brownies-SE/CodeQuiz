@@ -1,5 +1,12 @@
+/* Create an object with arrays that will act as the questions and answers for my program.
+Create a function to add a container that will display the questions to it.
+Create a function to actually display the questions to the container
+Create a function to check if the answer is correct when an option is clicked
+Create a function to get the user to the next question or if there are no questions left, 
+end the game and display the highscore  */
+
 var myTimer;
-var questionCounter = 0;
+var questiontimeLeft = 0;
 var score = 0;
 var wrongAnswer = 0;
 
@@ -53,10 +60,23 @@ function startQuiz() {
   startPage.style.display = "none";
   // display the questions
   questionWindow.style.display = "block";
-
+  //Set the time and condition if its correct or not
   timeInterval();
   //populate questions
   displayQuestion();
   //Get the usersInput, do work depending on the input
   getUserInput();
+}
+
+function timeInterval() {
+  myTimer = setInterval(timer, 1000);
+  var timeLeft = 15; // Set the originial clock to 15 seconds
+
+  function timer() {
+    // if the wrong answer is clicked, take 2 seconds away from the count
+    if (wrongAnswer === 1) {
+      timeLeft -= 2;
+      wrongAnswer--;
+    }
+  }
 }
