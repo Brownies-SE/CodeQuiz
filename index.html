@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Quiz</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+
+  <body>
+    <!-- the navbar  -->
+    <nav class="navbar">
+      <a class="navbar-highscore" href="#">View Highscores</a>
+      <div class="navbar">
+        <span id="score"> </span>
+      </div>
+      <div class="navbar">
+        <span id="timer-text"> </span>
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- home page -->
+      <div id="start-page" class="ml-auto p-3">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto text-center">
+            <h1>JavaScript Code Quiz</h1>
+            <br />
+            <p>
+              Correct answer give you a higher score and anytime you get a
+              question wrong, time is taken from the timer.
+            </p>
+            <button type="button" class="btn btn-primary btn-lg" id="start">
+              Start Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- container for questions and setting up buttons-->
+      <div
+        class="question col-md-8 ml-auto mr-auto text-center"
+        id="question-window"
+      >
+        <h3 id="question-title">question</h3>
+        <br />
+        <p id="question-text"></p>
+        <div class="row" id="answers">
+          <div class="col text-center m-auto">
+            <button
+              type="button"
+              class="answer-btn btn-primary btn-lg mr-auto mb-2"
+              id="ans1"
+            ></button>
+
+            <button
+              type="button"
+              class="answer-btn btn-primary btn-lg mr-auto mb-2"
+              id="ans2"
+            ></button>
+
+            <button
+              type="button"
+              class="answer-btn btn-primary btn-lg mr-auto mb-2"
+              id="ans3"
+            ></button>
+
+            <button
+              type="button"
+              class="answer-btn btn-primary btn-lg mr-auto mb-2"
+              id="ans4"
+            ></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div id="end-page">
+        <div class="col text-center">
+          <h1>Done!</h1>
+          <form>
+            <br />
+            <button type="submit" class="btn btn-primary" id="userName-btn">
+              submit
+            </button>
+          </form>
+          <br />
+          <h3>
+            <span id="final-score"></span>
+            <br />
+            <span id="userName"></span>
+          </h3>
+        </div>
+      </div>
+    </div>
+    <!-- js -->
+    <script src="script.js"></script>
+  </body>
+</html>

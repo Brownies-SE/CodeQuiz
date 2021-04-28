@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+:root {
+  --original: whitesmoke;
+}
+
+.container {
+  width: 800px;
+  max-width: 80%;
+  background-color: lightblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  background-color: lightblue;
+}
+
+#start-page {
+  background-color: lightblue;
+}
+
+.question {
+  display: none;
+}
+
+#end-page {
+  display: none;
+}
+
+navbar {
+  display: inline;
+}
