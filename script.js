@@ -78,5 +78,23 @@ function timeInterval() {
       timeLeft -= 2;
       wrongAnswer--;
     }
+
+    if (timeLeft < 0) {
+      timeLeft = 0;
+    } else if (timeLeft > 0) {
+      document.getElementById("timer-text").innerHTML = timeLeft + " sec";
+      document.getElementById("score").innerHTML = "Score: " + score;
+      timeLeft--;
+    } else {
+      clearInterval(myTimer);
+
+      //time is 0, display the score
+      document.getElementById("timer-text").innerHTML = "Time Remaining: 0 sec";
+      document.getElementById("final-score").innerHTML = "Score: " + score;
+      // set display to none so the questions page is now gone
+      questionWindow.style.display = "none";
+      // display the endpage now that questions are over
+      endPage.style.display = "block";
+    }
   }
 }
