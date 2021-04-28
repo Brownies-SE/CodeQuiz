@@ -57,42 +57,6 @@ function startQuiz() {
   timeInterval();
   //populate questions
   displayQuestion();
-  //Get the usersInput do work depending on the input
-  buttonListen();
-}
-
-function timeInterval() {
-  myTimer = setInterval(timer, 1000);
-  var counter = 15; // Set the originial clock to 15 seconds
-
-  function timer() {
-    // if the wrong answer is clicked, take 2 seconds away from the count
-    if (wrongAnswer === 1) {
-      counter -= 2;
-      wrongAnswer--;
-    }
-
-    if (counter < 0) {
-      counter = 0;
-    } else if (counter > 0) {
-      document.getElementById("timer-text").innerHTML = counter + " sec";
-      document.getElementById("score").innerHTML = "Score: " + score;
-      counter--;
-    } else {
-      clearInterval(myTimer);
-
-      //COUNTER REACHES ZER00000000
-      document.getElementById("timer-text").innerHTML = "Time Remaining: 0 sec";
-      document.getElementById("final-score").innerHTML = "Score: " + score;
-      // window.location.href = "highscores.html";
-      endPage.style.display = "block";
-
-      // HIDE QUESTION PAGE
-      questionWindow.style.display = "none";
-
-      // SEND USER TO END PAGE
-      endPage.style.display = "block";
-      console.log(localStorage);
-    }
-  }
+  //Get the usersInput, do work depending on the input
+  getUserInput();
 }
